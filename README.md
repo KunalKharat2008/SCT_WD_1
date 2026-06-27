@@ -1,2 +1,27 @@
-# SCT_WD_1
-Responsive Landing Page with Interactive Navigation Menu | SkillCraft Technology Internship Task 1
+Responsive Landing Page
+
+This project was developed as Task 1 during my Web Development Internship at SkillCraft Technology.
+
+Features
+
+• Fully Responsive Design
+• Fixed Navigation Bar
+• Smooth Scroll Effects
+• Glassmorphism UI
+• Interactive Shopping Cart
+• Login Modal
+• Search Modal
+• FAQ Accordion
+• Scroll Reveal Animations
+• Parallax Effects
+• Modern Responsive Layout
+
+Technologies Used
+
+• HTML5
+• CSS3
+• JavaScript (ES6)
+
+Author
+
+Aadesh Gangwal
