@@ -1,23 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ---------------------------------------------------
-       8. Dynamic Navbar (Task 1 Scroll Requirement)
-       --------------------------------------------------- */
+    // Dynamic Navbar (Task 1 Scroll Requirement)       
     const navbar = document.querySelector('.top-nav');
-
     window.addEventListener('scroll', () => {
-        // If the user scrolls down more than 50 pixels
+
         if (window.scrollY > 50) {
-            navbar.classList.add('scrolled'); // Adds solid background & shrinks
+            navbar.classList.add('scrolled');
         } else {
-            navbar.classList.remove('scrolled'); // Returns to transparent
+            navbar.classList.remove('scrolled');
         }
     });
 
-
-    /* ---------------------------------------------------
-       1. Custom Parallax Logic
-       --------------------------------------------------- */
+    // 1. Custom Parallax Logic
+       
     const parallaxElements = document.querySelectorAll('.parallax');
     const container = document.querySelector('.parallax-container');
 
@@ -46,9 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ---------------------------------------------------
-       2. Scroll Reveal Animations
-       --------------------------------------------------- */
+    
+    // 2. Scroll Reveal Animations
+       
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -61,9 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
 
-    /* ---------------------------------------------------
-       3. FAQ Accordion Logic
-       --------------------------------------------------- */
+    
+    // 3. FAQ Accordion Logic
+       
     const faqQuestions = document.querySelectorAll('.faq-question');
 
     faqQuestions.forEach(question => {
@@ -71,10 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const item = question.parentNode;
             const answer = item.querySelector('.faq-answer');
 
-            // Toggle active class for icon rotation
             item.classList.toggle('active');
 
-            // Animate max-height
             if (item.classList.contains('active')) {
                 answer.style.maxHeight = answer.scrollHeight + "px";
                 answer.style.paddingTop = "10px";
@@ -87,9 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-/* ---------------------------------------------------
-   4. Modal & Overlay Management
-   --------------------------------------------------- */
+
+// 4. Modal & Overlay Management
+   
 const overlay = document.getElementById("overlay");
 
 function openModal(modalId) {
@@ -109,9 +102,9 @@ function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-/* ---------------------------------------------------
-   5. Functional Cart Logic
-   --------------------------------------------------- */
+
+// 5. Functional Cart Logic
+   
 let cart = [];
 
 function addToCart(name, price) {
@@ -172,9 +165,9 @@ function checkout() {
     }, 1500);
 }
 
-/* ---------------------------------------------------
-   6. Form & Button Interactions
-   --------------------------------------------------- */
+
+// 6. Form & Button Interactions
+   
 function handleLogin(e) {
     e.preventDefault();
     closeModals();
@@ -192,9 +185,9 @@ function handleSearch() {
     }
 }
 
-/* ---------------------------------------------------
-   7. Global Toast Notification System
-   --------------------------------------------------- */
+
+// 7. Global Toast Notification System
+   
 const toast = document.getElementById("toast");
 let toastTimeout;
 
