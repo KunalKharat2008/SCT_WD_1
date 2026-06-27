@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Pro | Sonic Defense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <div id="auth-modal" class="glass-modal">
+        <button class="close-btn" onclick="closeModals()">✕</button>
+        <h2>Welcome Back</h2>
+        <p>Enter your details to access your sonic profile.</p>
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <input type="email" placeholder="Email Address" required class="glass-input">
+            <input type="password" placeholder="Password" required class="glass-input">
+            <button type="submit" class="btn-solid w-100 mt-10">Sign In</button>
+        </form>
+    </div>
+
+    <div id="search-modal" class="glass-modal search-modal">
+        <button class="close-btn" onclick="closeModals()">✕</button>
+        <input type="text" placeholder="Search products, support, or features..." class="glass-input search-input"
+            id="search-input">
+        <button class="btn-glass w-100 mt-10" onclick="handleSearch()">Search</button>
+    </div>
+
+    <div id="cart-sidebar" class="cart-sidebar glass-panel">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-btn" onclick="closeModals()">✕</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn-solid w-100" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <div class="app-wrapper">
+
+        <header class="top-nav">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span>AURA</span>
+            </div>
+
+            <nav class="pill-menu">
+                <a href="#home" class="active">Home</a>
+                <a href="#anatomy">Tech</a>
+                <a href="#features">App</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#specs">Specs</a>
+                <a href="#faq">FAQ</a>
+                <a href="#" class="protection-link" onclick="openModal('search-modal')">Search 🔍</a>
+            </nav>
+
+            <div class="account-actions">
+                <button class="btn-text" onclick="openModal('cart-sidebar')">Cart (<span
+                        id="cart-count">0</span>)</button>
+                <button class="btn-glass-small" onclick="openModal('auth-modal')">Sign In</button>
+            </div>
+        </header>
+
+        <main id="home" class="hero-section parallax-container">
+            <div class="node parallax" data-speed="2" style="top: 25%; left: 15%;">
+                <div class="node-icon">△</div>
+                <div class="node-info">
+                    <h4>ANC System</h4><span>-40dB</span>
+                </div>
+            </div>
+            <div class="node parallax" data-speed="-3" style="top: 65%; left: 10%;">
+                <div class="node-icon">⚄</div>
+                <div class="node-info">
+                    <h4>Battery</h4><span>50 Hrs</span>
+                </div>
+            </div>
+            <div class="node parallax" data-speed="4" style="top: 30%; right: 15%;">
+                <div class="node-info" style="text-align: right; margin-right: 15px;">
+                    <h4>Drivers</h4><span>11mm Beryllium</span>
+                </div>
+                <div class="node-icon">❋</div>
+            </div>
+
+            <div class="center-content">
+                <div class="spark-badge parallax" data-speed="1">
+                    <span>⚡</span> Unlock Spatial Audio Spark ➔
+                </div>
+
+                <h1 class="parallax" data-speed="2">One-click for<br>Sonic Defense.</h1>
+                <p class="parallax" data-speed="1.5">Dive into pure isolation. Where innovative acoustic engineering
+                    meets audiophile expertise.</p>
+
+                <div class="cta-group parallax" data-speed="1">
+                    <button class="btn-glass" onclick="addToCart('Aura Pro Earbuds', 249.99)">Add to Cart -
+                        $249</button>
+                    <button class="btn-solid" onclick="scrollToSection('anatomy')">Discover More</button>
+                </div>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=1600"
+                alt="Earbuds" class="hero-bg-img parallax" data-speed="0.5">
+        </main>
+
+        <section id="anatomy" class="anatomy-section content-padding reveal">
+            <div class="anatomy-grid">
+                <div class="anatomy-text">
+                    <h2>The Architecture of Silence.</h2>
+                    <p class="text-muted mt-20 mb-40">Every millimeter of the Aura Pro has been engineered to eliminate
+                        the outside world and deliver uncompromised high-fidelity audio.</p>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="icon-box">⌖</div>
+                            <div>
+                                <h4>A1 Neural Processor</h4>
+                                <p class="text-muted">Analyzes external noise 100,000 times per second.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item mt-20">
+                            <div class="icon-box">◎</div>
+                            <div>
+                                <h4>Custom Beryllium Drivers</h4>
+                                <p class="text-muted">Ultra-rigid material for zero distortion at maximum volume.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item mt-20">
+                            <div class="icon-box">🌬</div>
+                            <div>
+                                <h4>Acoustic Mesh Vents</h4>
+                                <p class="text-muted">Relieves pressure buildup for all-day comfort.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="anatomy-image">
+                    <img src="https://images.unsplash.com/photo-1612444530582-fc66183b16f7?auto=format&fit=crop&q=80&w=1000"
+                        alt="Internal Tech" class="rounded img-fluid glass-border-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="insights-section content-padding reveal">
+            <div class="section-header text-center mb-40">
+                <h2>Meet Marvellous Acoustics</h2>
+                <p class="text-muted">Track your listening habits, customize EQ, and dominate your soundscape via the
+                    app.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-card bento-large glass-panel flex-column-between">
+                    <div>
+                        <h3 style="font-size: 3.5rem; margin-bottom: 5px;">98.2%</h3>
+                        <p class="text-muted">Noise Cancellation Efficiency</p>
+                    </div>
+
+                    <div class="wave-visualizer mt-40 mb-40">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+
+                    <div class="bento-footer-flex flex-between">
+                        <span class="pill-tag">Spatial Audio Active</span>
+                        <span class="pill-tag text-muted">Low Latency Mode</span>
+                    </div>
+                </div>
+
+                <div class="bento-card glass-panel">
+                    <h4>Frequency Response</h4>
+                    <p class="text-muted">Studio-grade tuning.</p>
+                    <div class="bar-chart mt-20">
+                        <div class="bar" style="height: 40%"></div>
+                        <div class="bar" style="height: 80%"></div>
+                        <div class="bar" style="height: 60%"></div>
+                        <div class="bar" style="height: 100%"></div>
+                        <div class="bar" style="height: 70%"></div>
+                    </div>
+                </div>
+
+                <div class="bento-card glass-panel flex-center">
+                    <div>
+                        <h4 class="text-muted">Total Playtime</h4>
+                        <h2 class="mt-10" style="font-size: 3rem;">50h</h2>
+                        <button class="btn-glass-small mt-20" onclick="triggerToast('Firmware is up to date.')">Check
+                            Firmware</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section content-padding reveal">
+            <div class="section-header text-center mb-40">
+                <h2>Designed for the Real World.</h2>
+            </div>
+            <div class="gallery-grid">
+
+                <div class="gallery-card glass-panel p-0 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&q=80&w=800"
+                        alt="Aura Pro Obsidian" class="gallery-img">
+                    <div class="gallery-info" style="padding: 25px;">
+                        <h4>Aura Pro - Obsidian</h4>
+                        <p class="text-muted mt-10" style="font-size: 0.9rem;">Studio-grade sound tailored for the busy
+                            commute.</p>
+                        <div class="flex-between mt-20">
+                            <span style="font-weight: 700; font-size: 1.2rem;">$249</span>
+                            <button class="btn-glass-small" onclick="addToCart('Aura Pro Obsidian', 249)">Add to
+                                Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card glass-panel p-0 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800"
+                        alt="Aura Pro Solar" class="gallery-img">
+                    <div class="gallery-info" style="padding: 25px;">
+                        <h4>Aura Pro - Solar</h4>
+                        <p class="text-muted mt-10" style="font-size: 0.9rem;">Vibrant aesthetics meeting uncompromising
+                            acoustic power.</p>
+                        <div class="flex-between mt-20">
+                            <span style="font-weight: 700; font-size: 1.2rem;">$249</span>
+                            <button class="btn-glass-small" onclick="addToCart('Aura Pro Solar', 249)">Add to
+                                Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card glass-panel p-0 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=800"
+                        alt="Aura Pro Mocha" class="gallery-img">
+                    <div class="gallery-info" style="padding: 25px;">
+                        <h4>Aura Pro - Mocha</h4>
+                        <p class="text-muted mt-10" style="font-size: 0.9rem;">Premium matte finish for the modern
+                            audiophile.</p>
+                        <div class="flex-between mt-20">
+                            <span style="font-weight: 700; font-size: 1.2rem;">$249</span>
+                            <button class="btn-glass-small" onclick="addToCart('Aura Pro Mocha', 249)">Add to
+                                Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="specs" class="specs-section content-padding reveal">
+            <div class="section-header text-center mb-40">
+                <h2>Technical Specifications</h2>
+            </div>
+            <div class="glass-panel p-0 overflow-hidden">
+                <table class="specs-table w-100">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Aura Pro (This Model)</th>
+                            <th class="text-muted">Aura Standard</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Active Noise Cancellation</td>
+                            <td>Yes (A1 Chip, -40dB)</td>
+                            <td class="text-muted">Basic (-25dB)</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Life (with case)</td>
+                            <td>50 Hours</td>
+                            <td class="text-muted">30 Hours</td>
+                        </tr>
+                        <tr>
+                            <td>Spatial Audio</td>
+                            <td>Dynamic Head Tracking</td>
+                            <td class="text-muted">Fixed</td>
+                        </tr>
+                        <tr>
+                            <td>Water Resistance</td>
+                            <td>IPX7 (Fully Waterproof)</td>
+                            <td class="text-muted">IPX4 (Splashproof)</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td><button class="btn-glass-small" onclick="addToCart('Aura Pro', 249.99)">$249.99 -
+                                    Add</button></td>
+                            <td class="text-muted"><button class="btn-glass-small"
+                                    onclick="addToCart('Aura Standard', 149.99)">$149.99 - Add</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="reviews" class="reviews-section content-padding reveal">
+            <div class="section-header text-center mb-40">
+                <h2>Audiophile Approved.</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card glass-panel">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The noise cancellation is terrifyingly good. It literally feels like a
+                        defense shield against the outside world."</p>
+                    <p class="reviewer">- TechRadar</p>
+                </div>
+                <div class="review-card glass-panel">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Puts my previous studio monitors to shame. The spatial audio tracking is
+                        flawless."</p>
+                    <p class="reviewer">- Marques B.</p>
+                </div>
+                <div class="review-card glass-panel">
+                    <div class="stars">★★★★☆</div>
+                    <p class="review-text">"Incredible battery life and transparency mode is crystal clear. The app is
+                        highly intuitive."</p>
+                    <p class="reviewer">- SoundGuys</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section content-padding reveal">
+            <div class="section-header text-center mb-40">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container glass-panel">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Are they compatible with Android and iOS?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-muted mt-10">Yes, the Aura Pro connects seamlessly via Bluetooth 5.3 to any
+                            modern operating system, with full app support on both Apple App Store and Google Play.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I wear them in the shower or while swimming?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-muted mt-10">The Aura Pro is IPX7 rated, meaning it can survive submersion in up
+                            to 1 meter of water for 30 minutes. However, Bluetooth signals do not travel well
+                            underwater, so swimming is not recommended.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What happens if I lose one earbud?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-muted mt-10">You can use the 'Find My Aura' feature in our app to play a loud
+                            sound or track its last known GPS location. Replacement single earbuds are also available in
+                            our store.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="glass-footer">
+            <div class="footer-grid content-padding">
+                <div>
+                    <h3 class="logo-text">AURA.</h3>
+                    <p class="text-muted mt-10">Next-generation sonic defense systems.</p>
+                    <div class="mt-20">
+                        <input type="email" placeholder="Join our newsletter" class="glass-input"
+                            style="width: 70%; display: inline-block;">
+                        <button class="btn-solid" style="padding: 14px 20px;"
+                            onclick="triggerToast('Subscribed!')">→</button>
+                    </div>
+                </div>
+                <div>
+                    <h4>Products</h4>
+                    <a href="#">Aura Pro</a>
+                    <a href="#">Aura Lite</a>
+                    <a href="#">Accessories</a>
+                    <a href="#">Gift Cards</a>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Warranty Registration</a>
+                    <a href="#">Firmware Downloads</a>
+                    <a href="#">Track Order</a>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <a href="#" onclick="triggerToast('Opening Twitter...')">Twitter</a>
+                    <a href="#" onclick="triggerToast('Opening Instagram...')">Instagram</a>
+                    <a href="#" onclick="triggerToast('Opening Discord...')">Discord</a>
+                </div>
+            </div>
+            <div class="footer-bottom flex-between content-padding" style="padding-top: 0; padding-bottom: 30px;">
+                <p class="text-muted">© 2026 Aura Sonic Systems. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#" class="text-muted" style="margin-right: 15px; text-decoration: none;">Privacy Policy</a>
+                    <a href="#" class="text-muted" style="text-decoration: none;">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast">Action Successful!</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

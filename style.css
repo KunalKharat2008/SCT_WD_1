@@ -1,0 +1,1025 @@
+/* --- Base Reset & DeFi Variables --- */
+:root {
+    --bg-dark: #030305;
+    --bg-panel: #0a0b10;
+    --text-main: #ffffff;
+    --text-muted: #888c96;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --accent: #e2e8f0;
+    --glow-color: rgba(167, 194, 186, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* --- Utilities --- */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.rounded {
+    border-radius: 12px;
+}
+
+.content-padding {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Ambient Glowing Mesh --- */
+.ambient-glow {
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 70vw;
+    height: 70vh;
+    background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+    filter: blur(100px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.ambient-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -100%;
+    right: -50%;
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle, rgba(120, 150, 200, 0.1) 0%, transparent 70%);
+    filter: blur(90px);
+}
+
+/* --- App Wrapper (The Screen Effect) --- */
+.app-wrapper {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-dark);
+    max-width: 1400px;
+    margin: 20px auto;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Navigation --- */
+/* --- Navigation (Updated for Task 1 Requirements) --- */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+
+    /* STRICT REQUIREMENT: Fixed Position */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+
+    /* Starts completely transparent */
+    background: transparent;
+    border-bottom: 1px solid transparent;
+
+    /* Smooth transition for when the scrolled class is added */
+    transition: all 0.4s ease;
+}
+
+/* STRICT REQUIREMENT: Changes color/style when scrolled */
+/* This class will be triggered by JavaScript */
+.top-nav.scrolled {
+    background: rgba(3, 3, 5, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 15px 40px;
+    /* Shrinks the navbar slightly for a premium feel */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.pill-menu {
+    display: flex;
+    gap: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 10px 30px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+
+.pill-menu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* STRICT REQUIREMENT: Changes style on hover */
+.pill-menu a:hover,
+.pill-menu a.active {
+    color: var(--text-main);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Added a slight glow on hover */
+}
+
+.protection-link {
+    border-left: 1px solid var(--glass-border);
+    padding-left: 20px;
+}
+
+.account-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* --- Buttons & Inputs --- */
+button {
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.btn-glass,
+.btn-glass-small {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: white;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+
+.btn-glass {
+    padding: 15px 30px;
+}
+
+.btn-glass-small {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+}
+
+.btn-glass:hover,
+.btn-glass-small:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-solid {
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-weight: 600;
+}
+
+.btn-solid:hover {
+    transform: scale(1.03);
+}
+
+.glass-input {
+    width: 100%;
+    padding: 15px 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.glass-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Update this in style.css */
+/* 1. Push the background image down and lower opacity slightly */
+.hero-bg-img {
+    position: absolute;
+    top: 12%;
+    /* Pushes the image down to clear the navbar */
+    left: 0;
+    width: 100%;
+    height: 85%;
+    /* Adjusts height so it doesn't overflow the bottom */
+    object-fit: cover;
+    opacity: .24;
+    filter: contrast(1.1) brightness(.9);
+    /* Slightly lowered opacity gives the text more room to breathe */
+    mix-blend-mode: screen;
+    z-index: 0;
+    pointer-events: none;
+    mask-image: radial-gradient(circle at center, black 35%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at center, black 35%, transparent 75%);
+}
+
+/* 2. Brighten the H1 and add a drop shadow */
+.hero-section h1 {
+    font-size: 5rem;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    /* Brighter gradient stops so the text is whiter overall */
+    background: linear-gradient(to right, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Drop-shadow is required here instead of text-shadow due to the background clip */
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.8));
+}
+
+/* 3. Brighten the paragraph text and add a text shadow */
+.hero-section p {
+    color: #f8fafc;
+    /* Changed from muted gray to a crisp, bright off-white */
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+    /* Heavy shadow to separate it from the image behind it */
+}
+
+.center-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.spark-badge {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    margin-bottom: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spark-badge span {
+    background: white;
+    color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.hero-section h1 {
+    font-size: 5rem;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-section p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Constellation Nodes */
+.node {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 2;
+}
+
+.node::before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    top: 50%;
+    left: -150px;
+}
+
+.node:nth-child(even)::before {
+    left: auto;
+    right: -150px;
+}
+
+.node-icon {
+    width: 35px;
+    height: 35px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    font-size: 0.8rem;
+}
+
+.node-info h4 {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.node-info span {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* --- General Glass Panels & Images --- */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.01);
+}
+
+.glass-border-img {
+    border: 1px solid var(--glass-border);
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* --- NEW: Anatomy Section --- */
+.anatomy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.anatomy-text h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.feature-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.anatomy-image img {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Bento Box Features --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.pill-tag {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 100px;
+}
+
+.bar {
+    flex: 1;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
+    border-radius: 4px 4px 0 0;
+}
+
+/* --- NEW: Lifestyle Gallery --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.gallery-img:hover {
+    transform: scale(1.02);
+}
+
+/* --- NEW: Tech Specs Table --- */
+.specs-table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.specs-table th,
+.specs-table td {
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.specs-table th {
+    background: rgba(255, 255, 255, 0.02);
+    font-weight: 600;
+}
+
+.specs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.specs-table tr:hover td {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+/* --- Reviews --- */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.stars {
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.review-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.reviewer {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* --- NEW: FAQ Accordion --- */
+.faq-container {
+    padding: 10px 40px;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--glass-border);
+    padding: 20px 0;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-question h4 {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+    color: var(--text-muted);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+    color: white;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+/* --- Footer --- */
+.glass-footer {
+    border-top: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+.footer-grid h4 {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.footer-grid a {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+
+.footer-grid a:hover {
+    color: white;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* --- Modals, Overlays & Cart System --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.glass-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    background: #0a0b10;
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 400px;
+    z-index: 101;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.glass-modal.active {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+}
+
+.glass-modal h2 {
+    margin-bottom: 10px;
+}
+
+.glass-modal p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.search-modal {
+    max-width: 600px;
+}
+
+.search-input {
+    font-size: 1.2rem;
+    padding: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: white;
+}
+
+/* Cart Sidebar */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 100%;
+    max-width: 350px;
+    height: 100vh;
+    background: #0a0b10;
+    z-index: 101;
+    border-left: 1px solid var(--glass-border);
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    padding: 30px;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header .close-btn {
+    position: static;
+}
+
+.cart-items {
+    padding: 30px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+
+.cart-item-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.empty-cart {
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 50px;
+}
+
+.cart-footer {
+    padding: 30px;
+    border-top: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: -300px;
+    background: white;
+    color: black;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toast.show {
+    right: 30px;
+}
+
+/* Animations & Scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    .anatomy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-grid,
+    .reviews-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+
+    .pill-menu {
+        display: none;
+    }
+
+    .specs-table th,
+    .specs-table td {
+        padding: 15px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Update Gallery Image CSS */
+.gallery-card {
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--glass-border);
+    border-radius: 0;
+}
+
+.gallery-img:hover {
+    transform: none;
+}
+
+/* Bento Box 1 CSS Visualizer */
+.flex-column-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.wave-visualizer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 100px;
+}
+
+.wave-bar {
+    width: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    animation: pulseWave 1.2s infinite ease-in-out;
+}
+
+.wave-bar:nth-child(3),
+.wave-bar:nth-child(7) {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* Staggering the animation timing and heights */
+.wave-bar:nth-child(1) {
+    height: 20%;
+    animation-delay: 0.0s;
+}
+
+.wave-bar:nth-child(2) {
+    height: 50%;
+    animation-delay: 0.1s;
+}
+
+.wave-bar:nth-child(3) {
+    height: 90%;
+    animation-delay: 0.2s;
+}
+
+.wave-bar:nth-child(4) {
+    height: 40%;
+    animation-delay: 0.3s;
+}
+
+.wave-bar:nth-child(5) {
+    height: 70%;
+    animation-delay: 0.4s;
+}
+
+.wave-bar:nth-child(6) {
+    height: 100%;
+    animation-delay: 0.5s;
+}
+
+.wave-bar:nth-child(7) {
+    height: 80%;
+    animation-delay: 0.6s;
+}
+
+.wave-bar:nth-child(8) {
+    height: 40%;
+    animation-delay: 0.7s;
+}
+
+.wave-bar:nth-child(9) {
+    height: 60%;
+    animation-delay: 0.8s;
+}
+
+.wave-bar:nth-child(10) {
+    height: 30%;
+    animation-delay: 0.9s;
+}
+
+@keyframes pulseWave {
+
+    0%,
+    100% {
+        transform: scaleY(0.4);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
